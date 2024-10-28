@@ -28,7 +28,7 @@ class Unit(Tile, Visitor, ABC):
         temp: Position = empty.position
 
         empty.position = self.position
-        self.position = temp
+        super().position = temp
 
 
 
