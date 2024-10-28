@@ -4,7 +4,7 @@ from Backend.VisitorInterfaces.Visited import Visited
 from Position import Position
 
 
-class Tile(ABC, Visited):
+class Tile(Visited, ABC):
 
     def __init__(self, tile: str, x: int, y: int):
         self.tile: str = tile

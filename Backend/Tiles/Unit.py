@@ -28,8 +28,4 @@ class Unit(Tile, Visitor, ABC):
         temp: Position = empty.position
 
         empty.position = self.position
-        super().position = temp
-
-
-
-
+        self.position = temp
