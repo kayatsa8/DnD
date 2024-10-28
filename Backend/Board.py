@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from Backend.Tiles.Tile import Tile
 
@@ -10,5 +10,8 @@ class Board:
 
     def get_tile(self, x: int, y: int) -> Optional[Tile]:
         # call in_bound
+        pass
+
+    def update_position(self, tiles: List[Tile]) -> None:
         pass
 
