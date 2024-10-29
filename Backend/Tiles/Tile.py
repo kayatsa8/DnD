@@ -13,6 +13,9 @@ class Tile(Visited, ABC):
     def Range(self, other: 'Tile') -> float:
         return self.position.Range(other.position)
 
+    def to_string(self) -> str:
+        return self.tile
+
 
 # @abstractmethod
 
