@@ -29,3 +29,6 @@ class Unit(Tile, Visitor, ABC):
 
         empty.position = self.position
         self.position = temp
+
+    def is_dead(self) -> bool:
+        return self.health_amount <= 0
