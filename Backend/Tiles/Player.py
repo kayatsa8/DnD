@@ -25,7 +25,6 @@ class Player(Unit, ABC):
         self.attack_points += 4 * self.level
         self.defense_points += self.level
 
-    @abstractmethod
-    def cast_ability(self) -> None:
-        pass
+
+
 
