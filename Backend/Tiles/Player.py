@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from Backend.Tiles.Enemy import Enemy
 from Backend.Tiles.Unit import Unit
 
 
@@ -25,6 +26,12 @@ class Player(Unit, ABC):
         self.attack_points += 4 * self.level
         self.defense_points += self.level
 
+    def visit_player(self, player: 'Player') -> None:
+        return
+
+    def visit_enemy(self, enemy: Enemy) -> None:
+        # TODO: implement after combat system
+        pass
 
 
 
