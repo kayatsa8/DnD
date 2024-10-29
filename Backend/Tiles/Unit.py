@@ -29,3 +29,8 @@ class Unit(Tile, Visitor, ABC):
 
         empty.position = self.position
         self.position = temp
+
+    def get_name(self) -> str:
+        return self.name
+
+
