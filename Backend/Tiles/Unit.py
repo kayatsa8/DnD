@@ -5,6 +5,7 @@ from Backend.Tiles.Position import Position
 from Backend.Tiles.Tile import Tile
 from Backend.Tiles.Wall import Wall
 from Backend.VisitorInterfaces.Visitor import Visitor
+import random
 
 
 class Unit(Tile, Visitor, ABC):
@@ -29,3 +30,16 @@ class Unit(Tile, Visitor, ABC):
 
         empty.position = self.position
         self.position = temp
+
+    def is_dead(self) -> bool:
+        return self.health_amount <= 0
+
+    def attack(self, opponent: 'Unit') -> None:
+        dmg: int = random.randint(0, self.attack_points)
+        opponent.defend(dmg)
+
+    def defend(self, dmg: int) -> None:
+        defence: int = random.randint(0, self.defense_points)
+
+        if dmg > defence:
+            self.health_amount -= dmg - defence
