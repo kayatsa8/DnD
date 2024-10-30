@@ -1,8 +1,10 @@
+from abc import ABC, abstractmethod
+
 from Backend.Tiles.Player import Player
 from Backend.Tiles.Unit import Unit
 
 
-class Enemy(Unit):
+class Enemy(Unit, ABC):
 
     def __init__(self, tile: str, x: int, y: int, name: str, health_pool: int, attack_points: int, defense_points: int,
                  experience_value: int):
@@ -16,4 +18,8 @@ class Enemy(Unit):
 
     def visit_player(self, player: Player) -> None:
         #TODO initiate fight
+        pass
+
+    @abstractmethod
+    def on_tick(self):
         pass
