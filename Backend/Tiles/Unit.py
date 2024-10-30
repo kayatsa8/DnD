@@ -31,6 +31,13 @@ class Unit(Tile, Visitor, ABC):
         empty.position = self.position
         self.position = temp
 
+    def get_name(self) -> str:
+        return self.name
+
+    def description(self) -> str:
+        return (f"--- {self.name} ---\n" + f"{self.health_amount} / {self.health_amount} 🩸\n" +
+                f"{self.attack_points} ⚔️    {self.defense_points} 🛡️\n")
+      
     def is_dead(self) -> bool:
         return self.health_amount <= 0
 
@@ -43,3 +50,4 @@ class Unit(Tile, Visitor, ABC):
 
         if dmg > defence:
             self.health_amount -= dmg - defence
+
