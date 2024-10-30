@@ -4,6 +4,7 @@ from typing import List
 from Backend.Board import Board
 from Backend.Tiles.Enemy import Enemy
 from Backend.Tiles.HeroicUnit import HeroicUnit
+from Backend.Tiles.Position import Position
 from Backend.Tiles.Tile import Tile
 from Backend.Tiles.Unit import Unit
 
@@ -34,8 +35,18 @@ class Player(Unit, ABC, HeroicUnit):
         return
 
     def visit_enemy(self, enemy: Enemy) -> None:
-        # TODO: implement after combat system
-        pass
+        self.attack(enemy)
+
+        if enemy.is_dead():
+            self.experience += enemy.experience_value
+            enemy.name = "toRemove"
+
+            tmp: Position = self.position
+            self.position = enemy.position
+            enemy.position = tmp
+
+            if self.can_level_up():
+                self.level_up()
 
     def on_tick(self, action: int, board: Board, enemies: List[Enemy]) -> None:
         if action == 'q':
@@ -57,6 +68,8 @@ class Player(Unit, ABC, HeroicUnit):
             tile = board.get_tile(self.position.x - 1, self.position.y)
 
         self.interact(tile)
+
+        board.update_position([self, tile])
 
 
 
