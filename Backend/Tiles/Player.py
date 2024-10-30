@@ -1,10 +1,15 @@
 from abc import ABC, abstractmethod
+from typing import List
 
+from Backend.Board import Board
 from Backend.Tiles.Enemy import Enemy
+from Backend.Tiles.HeroicUnit import HeroicUnit
+from Backend.Tiles.Position import Position
+from Backend.Tiles.Tile import Tile
 from Backend.Tiles.Unit import Unit
 
 
-class Player(Unit, ABC):
+class Player(Unit, ABC, HeroicUnit):
 
     def __init__(self, tile: str, x: int, y: int, name: str, health_pool: int, attack_points: int, defense_points: int):
         super().__init__(tile, x, y, name, health_pool, attack_points, defense_points)
@@ -30,8 +35,41 @@ class Player(Unit, ABC):
         return
 
     def visit_enemy(self, enemy: Enemy) -> None:
-        # TODO: implement after combat system
-        pass
+        self.attack(enemy)
+
+        if enemy.is_dead():
+            self.experience += enemy.experience_value
+            enemy.name = "toRemove"
+
+            tmp: Position = self.position
+            self.position = enemy.position
+            enemy.position = tmp
+
+            if self.can_level_up():
+                self.level_up()
+
+    def on_tick(self, action: int, board: Board, enemies: List[Enemy]) -> None:
+        if action == 'q':
+            return
+
+        if action == 'e':
+            self.cast_ability(enemies)
+            return
+
+        tile: Tile = Tile("", -1, -1)
+
+        if action == 'w':
+            tile = board.get_tile(self.position.x, self.position.y - 1)
+        elif action == 's':
+            tile = board.get_tile(self.position.x, self.position.y + 1)
+        elif action == 'd':
+            tile = board.get_tile(self.position.x + 1, self.position.y)
+        elif action == 'a':
+            tile = board.get_tile(self.position.x - 1, self.position.y)
+
+        self.interact(tile)
+
+        board.update_position([self, tile])
 
 
 
