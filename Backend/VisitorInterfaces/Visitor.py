@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
 from Backend.Tiles.EmptyTile import EmptyTile
-from Backend.Tiles.Enemy import Enemy
-from Backend.Tiles.Player import Player
+from Backend.Tiles.Enemy.Enemy import Enemy
+from Backend.Tiles.Enemy.Enemy import Player
 from Backend.Tiles.Wall import Wall
 
 

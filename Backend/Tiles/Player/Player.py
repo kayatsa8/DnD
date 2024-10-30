@@ -1,8 +1,8 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import List
 
 from Backend.Board import Board
-from Backend.Tiles.Enemy import Enemy
+from Backend.Tiles.Enemy.Enemy import Enemy
 from Backend.Tiles.HeroicUnit import HeroicUnit
 from Backend.Tiles.Position import Position
 from Backend.Tiles.Tile import Tile
