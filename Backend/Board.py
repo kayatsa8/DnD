@@ -13,5 +13,6 @@ class Board:
         pass
 
     def update_position(self, tiles: List[Tile]) -> None:
+        # TODO: remember to check name == "toRemove"
         pass
 
