@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from Backend.Tiles.Unit import Unit
+from Backend.Tiles.Unit.Unit import Unit
 
 
 class HeroicUnit(ABC):
