@@ -2,11 +2,11 @@ from abc import ABC
 from typing import List
 
 from Backend.Board import Board
-from Backend.Tiles.Enemy.Enemy import Enemy
-from Backend.Tiles.HeroicUnit import HeroicUnit
+from Backend.Tiles.Unit.Enemy.Enemy import Enemy
+from Backend.Tiles.Unit.HeroicUnit import HeroicUnit
 from Backend.Tiles.Position import Position
 from Backend.Tiles.Tile import Tile
-from Backend.Tiles.Unit import Unit
+from Backend.Tiles.Unit.Unit import Unit
 
 
 class Player(Unit, ABC, HeroicUnit):

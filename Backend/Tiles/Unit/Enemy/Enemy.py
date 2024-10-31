@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from Backend.Tiles.Player import Player
-from Backend.Tiles.Unit import Unit
+from Backend.Tiles.Unit.Player import Player
+from Backend.Tiles.Unit.Unit import Unit
 from Backend.VisitorInterfaces.Visitor import Visitor
 
 
