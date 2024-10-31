@@ -1,8 +1,11 @@
+from abc import ABC, abstractmethod
+
 from Backend.Tiles.Player import Player
 from Backend.Tiles.Unit import Unit
+from Backend.VisitorInterfaces.Visitor import Visitor
 
 
-class Enemy(Unit):
+class Enemy(Unit, ABC):
 
     def __init__(self, tile: str, x: int, y: int, name: str, health_pool: int, attack_points: int, defense_points: int,
                  experience_value: int):
@@ -11,9 +14,17 @@ class Enemy(Unit):
 
         self.experience_value: int = experience_value
 
+    def accept(self, visitor: Visitor) -> None:
+        visitor.visit_enemy(self)
+
     def visit_enemy(self, enemy: 'Enemy') -> None:
         return
 
     def visit_player(self, player: Player) -> None:
         #TODO initiate fight
+        pass
+        self.attack(player)
+
+    @abstractmethod
+    def on_tick(self):
         pass
